@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Niranjana's Wrapped </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=Unbounded:wght@300;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+:root {
+  /* Still Open palette */
+  --paper:   #FDF6E3;
+  --amber:   #F5A623;
+  --pink:    #FF6B9D;
+  --ink:     #2C1810;
+  --dark-bg: #1A120A;
+  --counter: #2E1F0F;
+  --glass:   rgba(255,252,240,0.08);
+  --serif:   'DM Serif Display', Georgia, serif;
+  --hand:    'Caveat', cursive;
+  --mono:    'Space Mono', monospace;
+  --bold:    'Unbounded', sans-serif;
+  /* legacy compat */
+  --cream:   #FDF6E3;
+  --hot:     #FF6B9D;
+  --soft:    #FFBAD6;
+  --plum:    #1A120A;
+  --mango:   #F5A623;
+  --mango-l: #FFD080;
+}
+html { scroll-behavior:smooth; background:var(--dark-bg); }
+body { font-family:var(--mono); color:var(--ink); overflow-x:hidden; }
+
+/* warm paper grain — fixed overlay */
+body::after {
+  content:''; position:fixed; inset:0; z-index:997; pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
+}
+
+/* progress bar — pink checkered */
+#pbar {
+  position: fixed; top: 0; left: 0; height: 6px; z-index: 1000;
+  background-color: #FF1A6B;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px);
+  background-size: 6px 6px;
+  width: 0; transition: width .1s linear;
+  border-radius: 0 99px 99px 0;
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.8), 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+/* ── SLIDES ── */
+.slide {
+  min-height:100vh; width:100%;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+  padding:clamp(48px,7vh,96px) clamp(24px,5vw,80px);
+}
+
+/* reveal */
+.rx { opacity:0; transform:translateY(28px);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),
+             transform .9s cubic-bezier(.16,1,.3,1); }
+.rx.in { opacity:1; transform:none; }
+.rx.d1{transition-delay:.12s}.rx.d2{transition-delay:.26s}
+.rx.d3{transition-delay:.40s}.rx.d4{transition-delay:.54s}
+
+/* ── global fluorescent tube glow (top of each slide) ── */
+.fluoro {
+  position:absolute; top:0; left:0; right:0; height:120px;
+  background:linear-gradient(180deg,rgba(220,230,255,0.18) 0%,transparent 100%);
+  pointer-events:none; z-index:2;
+  animation:flicker 8s 1s ease-in-out forwards;
+}
+@keyframes flicker {
+  0%  {opacity:1} 4%  {opacity:.7} 6%  {opacity:1} 8%  {opacity:.5}
+  10% {opacity:1} 12% {opacity:.8} 14% {opacity:1}
+  100%{opacity:1}
+}
+
+/* ── rain overlay (fixed, only visible on rain-slide class) ── */
+.rain-layer {
+  position:absolute; inset:0; z-index:3; pointer-events:none; overflow:hidden;
+}
+.rain-layer line {
+  stroke:rgba(180,210,255,0.18); stroke-width:1;
+  animation:rainFall linear infinite;
+}
+@keyframes rainFall {
+  from { transform:translateY(-100px); }
+  to   { transform:translateY(110vh); }
+}
+
+/* ══ 0 COVER — The Window (slide1.png) ════════════════════════════════════════════════════ */
+#s0 {
+  background: url('slide1.png') center center / cover no-repeat;
+  display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
+  padding: clamp(40px,6vh,80px) clamp(24px,5vw,60px);
+  min-height:100vh; overflow:hidden; position:relative;
+}
+/* 'enter store' button */
+.enter-btn {
+  background-color: #FFD1E3;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size: 8px 8px;
+  border: 2px solid #FFF;
+  color: #C2185B; /* Dark pink text */
+  font-family: var(--hand); font-size: clamp(22px,3.5vw,32px);
+  padding: 12px 40px; border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(255,209,227,0.4);
+  text-transform: lowercase;
+  margin-bottom: 4vh;
+  z-index: 10;
+  text-shadow: none; /* Removed so dark pink text is crisp */
+}
+.enter-btn:hover {
+  background-color: #FFB3CD;
+  box-shadow: 0 6px 24px rgba(255,209,227,0.6);
+  transform: translateY(-2px);
+}
+
+
+/* ══ TORN DIVIDER ══════════════════════════════════════════ */
+.torn {
+  width:100%; overflow:hidden; position:relative; z-index:10;
+  height:48px; margin:-24px 0;
+  background: transparent;
+}
+.torn svg { display:block; width:100%; height:100%; fill: rgba(255, 220, 232, 0.8); }
+
+/* ══ 1 NUMBERS (slide1.png) ════════════════════════════════════════════════ */
+#s1 {
+  background: url('s1.png') center center / cover no-repeat;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+  padding: clamp(40px,6vh,80px) clamp(24px,5vw,60px);
+  min-height: 100vh; overflow: hidden; position: relative;
+}
+.down-btn {
+  background-color: #FFD1E3;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size: 8px 8px;
+  border: 2px solid #FFF;
+  color: #C2185B;
+  font-size: 28px;
+  width: 64px; height: 64px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(255,209,227,0.4);
+  position: absolute; right: 4vw; bottom: 4vh;
+  z-index: 10;
+}
+.down-btn:hover {
+  background-color: #FFB3CD;
+  box-shadow: 0 6px 24px rgba(255,209,227,0.6);
+  transform: translateY(-2px);
+}
+
+/* ══ 2 PEAK HOUR (slide2.png) ═══════════════════════════════════════════ */
+#s2 {
+  background: url('s2.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ 3 REPLY SPEED (slide3.png) ═══════════════════════════════════ */
+#s3 {
+  background: url('s3.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ 4 EMOJI ERA (slide4.png) ═══════════════════════════════════ */
+#s4 {
+  background: url('s4.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ 5 BURST VS ESSAY (slide5.png) ════════════════════════════════════ */
+#s5 {
+  background: url('s5.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ 6 SLANG ERA (slide6.png) ════════════════════════════════════ */
+#s6 {
+  background: url('s6.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ 8 WORD CLOUD (slide8.png) ════════════════════════════════ */
+#s8 {
+  background: url('s8.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ 9 CHAOS (slide9.png) ══════════════════════════════════════════════ */
+#s9 {
+  background: url('s9.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+
+/* ══ MARQUEE ══════════════════════════════════════════════ */
+.marquee-wrap { background:var(--hot); overflow:hidden;
+  white-space:nowrap; padding:11px 0; position:relative; z-index:10; }
+.marquee-inner { display:inline-block;
+  animation:mq 24s linear infinite;
+  font-family:var(--bold); font-size:12px; letter-spacing:.12em;
+  color:rgba(255,240,246,0.7); }
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ 10 END (slide10.png) ═══════════════════════════════════════════════ */
+#s10 {
+  background: url('s10.png') center center / cover no-repeat;
+  min-height: 100vh; position: relative; overflow: hidden;
+}
+</style>
+</head>
+<body>
+<div id="pbar"></div>
+
+<!-- ══════════════════════════════
+     0 · COVER — The Window
+══════════════════════════════ -->
+<section class="slide" id="s0">
+  <button class="enter-btn rx" onclick="document.getElementById('s1').scrollIntoView({behavior: 'smooth'})">
+    enter store
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     1 · NUMBERS — The Receipt
+══════════════════════════════ -->
+<section class="slide" id="s1">
+  <button class="down-btn rx" onclick="document.getElementById('s2').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     2 · PEAK HOUR — The Clock
+══════════════════════════════ -->
+<section class="slide" id="s2">
+  <button class="down-btn rx" onclick="document.getElementById('s3').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     3 · REPLY SPEED — The Order Chit
+══════════════════════════════ -->
+<section class="slide" id="s3">
+  <button class="down-btn rx" onclick="document.getElementById('s4').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     4 · EMOJI ERA — The Display Case
+══════════════════════════════ -->
+<section class="slide" id="s4">
+  <button class="down-btn rx" onclick="document.getElementById('s5').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     5 · BURST VS ESSAY — Chalkboard
+══════════════════════════════ -->
+<section class="slide" id="s5">
+  <button class="down-btn rx" onclick="document.getElementById('s6').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     6 · SLANG ERA — Monsoon Letter
+══════════════════════════════ -->
+<section class="slide" id="s6">
+  <button class="down-btn rx" onclick="document.getElementById('s8').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     8 · WORD CLOUD
+══════════════════════════════ -->
+<section class="slide" id="s8">
+  <button class="down-btn rx" onclick="document.getElementById('s9').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     9 · CHAOS
+══════════════════════════════ -->
+<section class="slide" id="s9">
+  <button class="down-btn rx" onclick="document.getElementById('s10').scrollIntoView({behavior: 'smooth'})">
+    &darr;
+  </button>
+</section>
+
+<!-- torn subtle divider -->
+<div class="torn">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" fill="rgba(255, 255, 255, 0.6)">
+    <path d="M 0,14 C 100,4 200,24 300,14 C 400,4 500,22 600,12 C 700,2 800,18 900,10 C 1000,2 1100,16 1200,8 C 1300,0 1370,14 1440,10 L 1440,34 C 1370,38 1300,24 1200,32 C 1100,40 1000,26 900,34 C 800,42 700,26 600,36 C 500,46 400,28 300,38 C 200,48 100,28 0,38 Z"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════
+     10 · END
+══════════════════════════════ -->
+<section class="slide" id="s10">
+</section>
+
+
+<script>
+// ── Progress bar ──────────────────────────────────────────────────────────────
+const pbar = document.getElementById('pbar');
+window.addEventListener('scroll', () => {
+  const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  pbar.style.width = Math.min(p*100,100)+'%';
+},{passive:true});
+
+// ── Reveal on scroll ──────────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:0.14});
+document.querySelectorAll('.rx').forEach(el => io.observe(el));
+document.querySelectorAll('#s0 .rx').forEach(el => el.classList.add('in'));
+
+// ── Counter animation ─────────────────────────────────────────────────────────
+function countUp(el, target, dur=1600) {
+  let t0 = null;
+  (function step(ts) {
+    if(!t0) t0=ts;
+    const p = Math.min((ts-t0)/dur,1);
+    const e = 1-Math.pow(1-p,4);
+    el.textContent = Math.floor(e*target).toLocaleString();
+    if(p<1) requestAnimationFrame(step);
+  })(performance.now());
+}
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const v = parseInt(e.target.dataset.count);
+      if(!isNaN(v)) countUp(e.target, v);
+      cio.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+// ── Daisy bloom ───────────────────────────────────────────────────────────────
+function bloomDaisies(svgEl) {
+  if(!svgEl) return;
+  svgEl.querySelectorAll('.daisy-g').forEach((g,i) => {
+    setTimeout(() => g.classList.add('bloomed'), i*180);
+  });
+}
+const daisyIo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) bloomDaisies(e.target); });
+},{threshold:0.1});
+['daisySvg','endDaisySvg'].forEach(id => {
+  const el = document.getElementById(id);
+  if(el) daisyIo.observe(el);
+});
+
+// ── Mogu Mogu bubble canvas (cover) ──────────────────────────────────────────
+const bcanvas = document.getElementById('bubble-canvas');
+const bctx = bcanvas.getContext('2d');
+const BUBBLES = [{"r": 25, "x": 0.08693883262941615, "speed": 0.6375374557482163, "phase": 0.18712653807108176, "opacity": 0.11716845571661258}, {"r": 24, "x": 0.6020187290499803, "speed": 0.7489960503508903, "phase": 4.496603169152694, "opacity": 0.1992252455103401}, {"r": 21, "x": 0.2204406220406967, "speed": 0.7714125471007269, "phase": 5.083223267936751, "opacity": 0.08110478914527038}, {"r": 13, "x": 0.6981393949882269, "speed": 0.5722004132143935, "phase": 0.9764112588179882, "opacity": 0.24272622227515278}, {"r": 18, "x": 0.10221027651984871, "speed": 0.60394184050987, "phase": 2.2543905094434664, "opacity": 0.13847247282142508}, {"r": 16, "x": 0.8071282732743802, "speed": 0.8837854293550542, "phase": 3.3675124143355206, "opacity": 0.245429679876493}, {"r": 20, "x": 0.07880019807845817, "speed": 0.5345426251256743, "phase": 3.9478579408251044, "opacity": 0.23052679714925717}, {"r": 19, "x": 0.577352145256762, "speed": 0.8636574689719387, "phase": 0.2877771293575587, "opacity": 0.11874270686076296}, {"r": 17, "x": 0.9852215206607577, "speed": 0.9842541768121176, "phase": 5.4415174272230935, "opacity": 0.14462145825665823}, {"r": 22, "x": 0.6356844442644002, "speed": 0.5918657431760674, "phase": 2.3247364734940232, "opacity": 0.11561619523115291}, {"r": 16, "x": 0.7018203134585513, "speed": 0.8468381324293337, "phase": 0.4484077601532835, "opacity": 0.18794630899350023}, {"r": 25, "x": 0.7291267979503492, "speed": 0.43072199500954267, "phase": 2.3829801742380283, "opacity": 0.24821896960822115}, {"r": 28, "x": 0.6881619584333132, "speed": 0.47569213917621517, "phase": 2.036495572128221, "opacity": 0.21061330819070329}, {"r": 9, "x": 0.22904807196410437, "speed": 0.3256801951232302, "phase": 1.9810451418110346, "opacity": 0.12551594891586945}, {"r": 14, "x": 0.913136124185545, "speed": 0.7537440411828018, "phase": 4.508501620115169, "opacity": 0.1161465124892039}, {"r": 23, "x": 0.39563190106066426, "speed": 1.031638071792435, "phase": 2.8815896342488645, "opacity": 0.1250296283046689}, {"r": 15, "x": 0.7449889820916066, "speed": 0.7311818317338323, "phase": 4.69124673717618, "opacity": 0.15283375064007854}, {"r": 26, "x": 0.39940050514039727, "speed": 0.4754566073258267, "phase": 6.264536168789292, "opacity": 0.16661946992499896}, {"r": 10, "x": 0.7557821575337378, "speed": 0.9888823277333327, "phase": 0.9598434855070795, "opacity": 0.10719694029281654}, {"r": 21, "x": 0.5964090307319738, "speed": 0.6078138493396001, "phase": 3.7421793301078847, "opacity": 0.15956848092339512}, {"r": 16, "x": 0.9710783776136181, "speed": 0.9886237617875986, "phase": 0.07210081780090731, "opacity": 0.20252270929123306}, {"r": 25, "x": 0.7508777995916097, "speed": 0.9148789861259568, "phase": 2.136301970634964, "opacity": 0.12989502187006244}, {"r": 13, "x": 0.45372370632920644, "speed": 1.063052742016864, "phase": 5.5003564655750585, "opacity": 0.12477613862768543}, {"r": 24, "x": 0.7619621990520646, "speed": 0.7061453396834603, "phase": 0.6682599671695872, "opacity": 0.18630103290629096}, {"r": 28, "x": 0.5076628819776342, "speed": 0.4591288814117864, "phase": 2.348178994272409, "opacity": 0.10746333607803607}, {"r": 24, "x": 0.9184934943957023, "speed": 0.7791556675681832, "phase": 3.068443846421793, "opacity": 0.09901751330455216}, {"r": 19, "x": 0.8787218778231842, "speed": 0.9653324234889435, "phase": 1.931188707528714, "opacity": 0.08984727830401189}, {"r": 26, "x": 0.9469494452979941, "speed": 0.36852276165430303, "phase": 3.0520201096283346, "opacity": 0.09176612813962522}, {"r": 25, "x": 0.7658344293069878, "speed": 0.40271317159981024, "phase": 2.9847733344600327, "opacity": 0.17346661089414045}, {"r": 16, "x": 0.527673787418254, "speed": 0.7852751339861032, "phase": 6.056199049726819, "opacity": 0.23791529381037008}];
+
+function resizeBubbleCanvas() {
+  bcanvas.width  = window.innerWidth;
+  bcanvas.height = window.innerHeight;
+}
+resizeBubbleCanvas();
+window.addEventListener('resize', resizeBubbleCanvas);
+
+// Initialize bubble positions
+BUBBLES.forEach(b => {
+  b.px = b.x * bcanvas.width;
+  b.py = bcanvas.height * (0.3 + Math.random()*0.7);
+});
+
+let frame = 0;
+function drawBubbles() {
+  bctx.clearRect(0,0,bcanvas.width,bcanvas.height);
+  frame++;
+  BUBBLES.forEach(b => {
+    b.py -= b.speed * 0.4;
+    b.px += Math.sin(frame*0.012 + b.phase) * 0.3;
+    if(b.py < -b.r*2) {
+      b.py = bcanvas.height + b.r;
+      b.px = b.x * bcanvas.width;
+    }
+    bctx.beginPath();
+    bctx.arc(b.px, b.py, b.r, 0, Math.PI*2);
+    bctx.fillStyle = `rgba(255,184,212,${b.opacity})`;
+    bctx.fill();
+    // highlight
+    bctx.beginPath();
+    bctx.arc(b.px - b.r*0.28, b.py - b.r*0.3, b.r*0.25, 0, Math.PI*2);
+    bctx.fillStyle = `rgba(255,255,255,${b.opacity*1.2})`;
+    bctx.fill();
+  });
+  requestAnimationFrame(drawBubbles);
+}
+drawBubbles();
+
+// ── Film strip drag ───────────────────────────────────────────────────────────
+const strip = document.getElementById('filmStrip');
+if(strip) {
+  let drag=false, sx, sl;
+  strip.addEventListener('mousedown', e=>{drag=true;sx=e.pageX-strip.offsetLeft;sl=strip.scrollLeft;strip.style.cursor='grabbing';});
+  strip.addEventListener('mouseleave',()=>{drag=false;strip.style.cursor='grab';});
+  strip.addEventListener('mouseup',  ()=>{drag=false;strip.style.cursor='grab';});
+  strip.addEventListener('mousemove', e=>{if(!drag)return;e.preventDefault();strip.scrollLeft=sl-(e.pageX-strip.offsetLeft-sx);});
+  strip.addEventListener('touchstart',e=>{sx=e.touches[0].pageX;sl=strip.scrollLeft;},{passive:true});
+  strip.addEventListener('touchmove', e=>{strip.scrollLeft=sl-(e.touches[0].pageX-sx);},{passive:true});
+}
+
+// ── Share bar fill ────────────────────────────────────────────────────────────
+const shareBar = document.getElementById('shareBar');
+if(shareBar) {
+  const sbIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        shareBar.style.width = '51' + '%';
+        sbIo.unobserve(e.target);
+      }
+    });
+  },{threshold:0.4});
+  sbIo.observe(shareBar);
+}
+
+// ── Sticker reveal ────────────────────────────────────────────────────────────
+const sio = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('card-in');});
+},{threshold:0.2});
+const sw = document.getElementById('stickerWrap');
+if(sw) sio.observe(sw);
+
+// ── Mogu cup liquid fill on scroll into view ──────────────────────────────────
+const cup = document.getElementById('cupLiquid');
+if(cup) {
+  const cupIo = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) {
+        cup.style.transform = 'translateY(0)';
+        cupIo.unobserve(e.target);
+      }
+    });
+  },{threshold:0.4});
+  cupIo.observe(cup);
+}
+</script>
+</body>
+</html>
