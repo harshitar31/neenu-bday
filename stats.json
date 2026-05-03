@@ -1,0 +1,322 @@
+{
+  "name": "Niranjana",
+  "basic": {
+    "total": 7685,
+    "words": 26431,
+    "avg_len": 3.4,
+    "active_days": 354,
+    "streak": 48,
+    "share": 51
+  },
+  "peak": {
+    "label": "10AM",
+    "hour24": 10,
+    "bucket": "morning",
+    "bucket_pct": 30,
+    "bars": {
+      "0": 300,
+      "1": 51,
+      "2": 11,
+      "4": 1,
+      "5": 2,
+      "6": 81,
+      "7": 97,
+      "8": 324,
+      "9": 530,
+      "10": 647,
+      "11": 647,
+      "12": 486,
+      "13": 321,
+      "14": 166,
+      "15": 396,
+      "16": 418,
+      "17": 420,
+      "18": 416,
+      "19": 625,
+      "20": 390,
+      "21": 477,
+      "22": 441,
+      "23": 438
+    }
+  },
+  "reply": {
+    "avg": "1h 6m",
+    "fastest": "1s",
+    "p90": "2h 31m",
+    "total": 7443
+  },
+  "emoji": {
+    "top": [
+      {
+        "emoji": "😭",
+        "count": 168
+      },
+      {
+        "emoji": "😔",
+        "count": 17
+      },
+      {
+        "emoji": "👀",
+        "count": 13
+      },
+      {
+        "emoji": "🫠",
+        "count": 11
+      },
+      {
+        "emoji": "😋",
+        "count": 8
+      },
+      {
+        "emoji": "😂",
+        "count": 8
+      },
+      {
+        "emoji": "😍",
+        "count": 8
+      },
+      {
+        "emoji": "🦚",
+        "count": 7
+      }
+    ],
+    "by_year": {
+      "2025": [
+        {
+          "emoji": "😭",
+          "count": 95
+        },
+        {
+          "emoji": "😔",
+          "count": 16
+        },
+        {
+          "emoji": "🫠",
+          "count": 11
+        },
+        {
+          "emoji": "😋",
+          "count": 8
+        }
+      ],
+      "2026": [
+        {
+          "emoji": "😭",
+          "count": 73
+        },
+        {
+          "emoji": "🙏",
+          "count": 7
+        },
+        {
+          "emoji": "😍",
+          "count": 7
+        },
+        {
+          "emoji": "👀",
+          "count": 5
+        }
+      ]
+    },
+    "total": 337
+  },
+  "burst": {
+    "burst_pct": 67,
+    "avg_burst": 3.4,
+    "avg_solo": 3.5
+  },
+  "slang": {
+    "eras": [
+      {
+        "year": "2025",
+        "words": [
+          "harshie",
+          "dont",
+          "issoke",
+          "fine",
+          "coz"
+        ]
+      },
+      {
+        "year": "2026",
+        "words": [
+          "you're",
+          "leaving",
+          "walk",
+          "ratan",
+          "kay"
+        ]
+      }
+    ]
+  },
+  "mood": {
+    "months": [
+      {
+        "key": "2025-04",
+        "label": "Apr 25",
+        "score": 0.03
+      },
+      {
+        "key": "2025-05",
+        "label": "May 25",
+        "score": 0.031
+      },
+      {
+        "key": "2025-06",
+        "label": "Jun 25",
+        "score": 0.035
+      },
+      {
+        "key": "2025-07",
+        "label": "Jul 25",
+        "score": -0.02
+      },
+      {
+        "key": "2025-08",
+        "label": "Aug 25",
+        "score": 0.039
+      },
+      {
+        "key": "2025-09",
+        "label": "Sep 25",
+        "score": 0.029
+      },
+      {
+        "key": "2025-10",
+        "label": "Oct 25",
+        "score": 0.021
+      },
+      {
+        "key": "2025-11",
+        "label": "Nov 25",
+        "score": 0.037
+      },
+      {
+        "key": "2025-12",
+        "label": "Dec 25",
+        "score": -0.007
+      },
+      {
+        "key": "2026-01",
+        "label": "Jan 26",
+        "score": 0.034
+      },
+      {
+        "key": "2026-02",
+        "label": "Feb 26",
+        "score": -0.034
+      },
+      {
+        "key": "2026-03",
+        "label": "Mar 26",
+        "score": 0.021
+      },
+      {
+        "key": "2026-04",
+        "label": "Apr 26",
+        "score": 0.023
+      }
+    ]
+  },
+  "topics": {
+    "top_words": [
+      {
+        "word": "sorry",
+        "count": 76
+      },
+      {
+        "word": "thats",
+        "count": 76
+      },
+      {
+        "word": "harshie",
+        "count": 64
+      },
+      {
+        "word": "coz",
+        "count": 63
+      },
+      {
+        "word": "chill",
+        "count": 62
+      },
+      {
+        "word": "room",
+        "count": 61
+      },
+      {
+        "word": "done",
+        "count": 60
+      },
+      {
+        "word": "fine",
+        "count": 56
+      },
+      {
+        "word": "dont",
+        "count": 53
+      },
+      {
+        "word": "issoke",
+        "count": 52
+      },
+      {
+        "word": "today",
+        "count": 51
+      },
+      {
+        "word": "time",
+        "count": 45
+      },
+      {
+        "word": "something",
+        "count": 44
+      },
+      {
+        "word": "shit",
+        "count": 43
+      }
+    ],
+    "top_bigrams": [
+      {
+        "phrase": "okie okie",
+        "count": 8
+      },
+      {
+        "phrase": "these people",
+        "count": 7
+      },
+      {
+        "phrase": "case study",
+        "count": 7
+      },
+      {
+        "phrase": "either way",
+        "count": 6
+      },
+      {
+        "phrase": "whats wrong",
+        "count": 6
+      }
+    ]
+  },
+  "chaos": {
+    "top": [
+      {
+        "message": "thisssssss???????"
+      },
+      {
+        "message": "PLEEEEEEEAAAAAÀSSEEEEEEEEEEEE"
+      },
+      {
+        "message": "THATS SUUUUUSSSSSYYYYYYY"
+      },
+      {
+        "message": "😭😭😭😔😭😭😭😭"
+      },
+      {
+        "message": "WHAAT DID AMMAAAA SAAAAYYYY"
+      }
+    ]
+  }
+}
